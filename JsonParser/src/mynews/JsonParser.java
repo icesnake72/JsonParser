@@ -3,6 +3,8 @@ package mynews;
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -83,8 +85,8 @@ public class JsonParser {
             Optional.ofNullable(article.getAuthor()).orElse("").replace("'", "\\'"),
             Optional.ofNullable(article.getTitle()).orElse("").replace("'", "\\'"),
             Optional.ofNullable(article.getDescription()).orElse("").replace("'", "\\'"),
-            article.getUrl(),
-            article.getUrlToImage(),
+            URLEncoder.encode(article.getUrl(), StandardCharsets.UTF_8),
+            URLEncoder.encode(article.getUrlToImage(), StandardCharsets.UTF_8),
             article.getPublishedAt(),
             categoryId,
             countryId,
